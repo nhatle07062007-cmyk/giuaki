@@ -1,51 +1,169 @@
+/* --- BIẾN MÀU SẮC & THIẾT LẬP CHUNG --- */
 :root {
---bg: #f3f7fb;
---ink: #172033;
---primary: #0b5cad;
---card: #ffffff;
---radius: 18px;
+  --bg: #f3f7fb;
+  --ink: #172033;
+  --primary: #0b5cad;
+  --card: #ffffff;
+  --radius: 18px;
+  --warning-bg: #fef3c7;
+  --warning-text: #92400e;
 }
-* { box-sizing: border-box; }
+
+* { 
+  box-sizing: border-box; 
+}
+
 body {
-margin: 0;
-font-family: system-ui, -apple-system,
-"Segoe UI", sans-serif;
-color: var(--ink);
-background: var(--bg);
-line-height: 1.6;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
 }
-.container { width: min(1120px, 92%); margin-inline: auto; }
-.hero { padding: 3.5rem 0 2.5rem; color: white;
-background: linear-gradient(135deg, #083b70, #0b79d0); }
-.hero h1 { margin: .25rem 0; font-size: clamp(2rem, 6vw, 4rem); }
-.eyebrow { font-weight: 800; letter-spacing: .12em; }
+
+.container { 
+  width: min(1120px, 92%); 
+  margin-inline: auto; 
+}
+
+/* --- HERO SECTION --- */
+.hero { 
+  padding: 3.5rem 0 4.5rem; /* Tăng padding dưới để tạo hiệu ứng đè thẻ */
+  color: white;
+  background: linear-gradient(135deg, #083b70, #0b79d0); 
+  text-align: center;
+  margin-bottom: -40px; /* Hiệu ứng thẻ card đè lên nền hero */
+}
+
+.hero h1 { 
+  margin: .25rem 0; 
+  font-size: clamp(2rem, 6vw, 3.5rem); 
+  letter-spacing: -0.02em;
+}
+
+.hero .subtitle { 
+  font-size: 1.1rem; 
+  opacity: 0.9; 
+  max-width: 650px; 
+  margin: 0 auto; 
+}
+
+.eyebrow { 
+  font-weight: 800; 
+  letter-spacing: .12em; 
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+  backdrop-filter: blur(4px);
+}
+
+/* --- BỐ CỤC LƯỚI --- */
 .grid {
-display: grid;
-grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
-gap: 1.25rem;
-padding-block: 1.5rem 3rem;
-align-items: start;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+  gap: 1.5rem;
+  padding-block: 1.5rem 4rem;
+  align-items: start;
 }
+
+/* --- THẺ NỘI DUNG (CARD) --- */
 .card {
-background: var(--card);
-border-radius: var(--radius);
-padding: 1.25rem;
-box-shadow: 0 12px 35px rgba(15, 42, 70, .10);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 35px rgba(15, 42, 70, .10);
+  overflow: hidden; /* Cắt các góc bị lồi ra khỏi thẻ */
 }
-video { display: block; width: 100%; height: auto;
-border-radius: 12px; background: #000; }
-.video-missing {
-min-height: 220px;
-display: grid;
-place-content: center;
-padding: 1.5rem;
-border-radius: 12px;
-background: #e8eef4;
-text-align: center;
+
+.card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e8eef4;
+  background: #fcfdfe;
 }
-.video-missing p { margin: 0 0 .5rem; font-weight: 700; }
-.video-missing small { color: #526174; }
+
+.card-header h2 { 
+  margin: 0; 
+  font-size: 1.25rem; 
+  color: var(--primary); 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+.card-body { 
+  padding: 1.5rem; 
+}
+
+/* --- VIDEO & CẢNH BÁO LỖI --- */
+video { 
+  display: block; 
+  width: 100%; 
+  height: auto;
+  border-radius: 12px; 
+  background: #000; 
+}
+
+.alert-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  border: 1px solid #fcd34d;
+}
+
+.alert-warning p { margin: 4px 0 0; font-size: 0.9rem; }
+.alert-warning strong { font-size: 1.05rem; }
+
+/* --- DANH SÁCH HƯỚNG DẪN QUAN SÁT --- */
+.custom-list { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+.custom-list li {
+  padding: 1rem 0;
+  border-bottom: 1px dashed #e8eef4;
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.custom-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.custom-list li:first-child { padding-top: 0; }
+
+/* Dấu chấm (bullet) tùy chỉnh */
+.custom-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.45rem;
+  width: 8px; 
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+.custom-list li:first-child::before { top: 0.45rem; }
+
+.custom-list strong { 
+  display: block; 
+  margin-bottom: 4px; 
+  color: var(--ink); 
+}
+
+.custom-list span { 
+  color: #526174; 
+  font-size: 0.95rem; 
+}
+
+/* --- TƯƠNG THÍCH ĐIỆN THOẠI --- */
 @media (max-width: 760px) {
-.grid { grid-template-columns: 1fr; }
-.hero { padding-top: 2.5rem; }
+  .grid { grid-template-columns: 1fr; }
+  .hero { padding-top: 2.5rem; padding-bottom: 3.5rem; }
+  .card-header h2 { font-size: 1.15rem; }
 }
