@@ -155,4 +155,58 @@ video {
 /* --- DANH SÁCH PHÂN TÍCH (NEON ACCENTS) --- */
 .custom-list { 
   list-style: none; 
+  padding: 0;
+}
+
+.custom-list li {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  padding-left: 2rem;
+}
+
+.custom-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.custom-list li:first-child { padding-top: 0; }
+
+/* Chấm Bullet phát sáng như biểu đồ chứng khoán */
+.custom-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.6rem;
+  width: 10px; 
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.custom-list li:first-child::before { top: 0.35rem; }
+
+.custom-list strong { 
+  display: block; 
+  margin-bottom: 6px; 
+  color: #f8fafc; 
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.custom-list span { 
+  color: var(--text-muted); 
+  font-size: 0.95rem; 
+  line-height: 1.5;
+}
+
+/* --- TƯƠNG THÍCH ĐIỆN THOẠI (RESPONSIVE) --- */
+@media (max-width: 900px) {
+  .grid { 
+    grid-template-columns: 1fr; 
+  }
+  .hero { 
+    padding-top: 3rem; 
+    padding-bottom: 5rem; 
+  }
+  .hero h1 { 
+    font-size: 2.5rem; 
+  }
 }
